@@ -1,0 +1,72 @@
+{% extends "posts/layout.html" %}
+
+{% load static %}
+
+
+{% block title %}
+Comments
+{% endblock %}
+
+{% block body %}
+
+<!-- Page Content -->
+
+<table width="85%">  
+    <tbody>
+        <tr>
+            <td valign="top" width="20px">
+
+                {% include 'posts/inc/button.html' %}
+
+            </td>
+
+            <td class="default">
+                
+                {% include 'posts/inc/post_title.html' %}
+
+                {% include 'posts/inc/post_data.html' %}
+                
+                <form action="{% url 'add_comment' post.id %}" method="post" class="mt-3 mb-5" name="content">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Add comment" class="btn btn-outline-primary btn-sm">
+                </form>
+            </td>
+        </tr>
+ 
+        {% for comment in comments %}
+
+        <tr>
+            <td valign="top">
+
+                {% include 'posts/inc/button.html' %}
+            
+            </td>
+            <td class="default">
+                <div>
+                    <small class="text-muted">Posted by
+                        <strong>{{ comment.author }}</strong>
+                        {{ comment.created_at|timesince }} ago
+                    </small><br>                    
+                </div>
+                <div class="comment">
+                    {{ comment.content }}.
+                    <div class="reply">
+                        <p>
+                            <font size="1">
+                                <u><a href="#">reply</a></u>
+                            </font>
+                        </p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}
+
+ 

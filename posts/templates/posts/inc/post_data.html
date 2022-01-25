@@ -1,0 +1,6 @@
+<small class="text-muted">
+    created by {{ post.author }}
+    {{ post.created_at|timesince }} ago | 
+    <span id="count_votes{{ post.id }}">{{ post.votes_count }}</span> votes |
+    <a href="{% url 'add_comment' post.id %}">{{ post.comments_count }} comments</a>
+</small>

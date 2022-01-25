@@ -1,0 +1,29 @@
+# Ignore git and cache folders
+.git
+.gitignore
+__pycache__
+**/*.pyc
+
+# Ignore secret data
+.env
+.env.*
+
+# Ignore Dockerfile and docker-compose
+Dockerfile
+docker-compose.yml
+
+# Ignore markdown files
+*.md
+readme.docs/
+
+# Ignore virtual environment files
+venv/
+
+# ignore db.sqlite3
+db.sqlite3
+
+# ignore Pycharm configurations
+.idea
+
+# helper for cli project commands
+commands.*

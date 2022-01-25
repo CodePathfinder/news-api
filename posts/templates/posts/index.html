@@ -1,0 +1,41 @@
+{% extends "posts/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+News
+{% endblock %}
+
+{% block body %}
+
+{% include 'posts/inc/alerts.html' %}
+
+<div class="col-lg-10">
+    
+    {% for post in posts %}
+        
+        {{ forloop.counter }}.
+
+        {% include 'posts/inc/button.html' %}       
+        
+        {% include 'posts/inc/post_title.html' %}
+        
+        <div class="ms-5">
+
+            {% include 'posts/inc/post_data.html' %}
+
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+{% block script %}
+
+<script src="{% static 'posts/script.js' %}"></script>
+
+{% endblock %}
