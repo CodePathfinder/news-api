@@ -26,8 +26,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = int(os.environ.get('DEBUG', default=0))
-DEBUG = False
+# DEBUG = bool(os.environ.get('DEBUG') == "True")
+DEBUG = True
 
 
 ALLOWED_HOSTS = ["api-post-news.herokuapp.com", "127.0.0.1", "localhost"]
@@ -97,7 +97,8 @@ DATABASES = {
     }
 }
 # https://devcenter.heroku.com/articles/python-concurrency-and-database-connections
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)  
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
 REMOTE_FLAG = True
 
 AUTH_USER_MODEL = "posts.User"
