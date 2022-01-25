@@ -84,21 +84,32 @@ WSGI_APPLICATION = "news.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "os.environ.get('DB_NAME')",
-        'USER': "os.environ.get('DB_USERNAME')",
-        'PASSWORD': "os.environ.get('DB_PASSWORD')",
-        'HOST': "os.environ.get('DB_HOST')",
-        'PORT': "os.environ.get('DB_PORT')"
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': "os.environ.get('DB_NAME')",
+            'USER': "os.environ.get('DB_USERNAME')",
+            'PASSWORD': "os.environ.get('DB_PASSWORD')",
+            'HOST': "os.environ.get('DB_HOST')",
+            'PORT': "os.environ.get('DB_PORT')"
+        }
+
     }
-}
-# https://devcenter.heroku.com/articles/python-concurrency-and-database-connections
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    # https://devcenter.heroku.com/articles/python-concurrency-and-database-connections
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)  
+    REMOTE_FLAG = True
+else:
 
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    
 REMOTE_FLAG = True
 
 AUTH_USER_MODEL = "posts.User"
