@@ -13,7 +13,15 @@ function updateVotes(vote) {
   // GET request to update_votes API route
   let post_id = vote.slice(4);
   url = `http://127.0.0.1:8000/update_votes/${post_id}`
-  fetch(url)
+  let headers = new Headers();
+  headers.append('Access-Control-Allow-Origin', '*');
+  headers.append('Content-Type', 'application/json');
+  headers.append('Accept', 'application/json');
+  fetch(url, {
+    mode: 'cors',
+    headers: headers,
+  })
+  
   .then(response => response.json())
   .then(result => {  
     console.log(result);

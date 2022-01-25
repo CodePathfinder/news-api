@@ -5,8 +5,8 @@ __pycache__
 **/*.pyc
 
 # Ignore secret data
-.env
-.env.*
+# .env
+# .env.*
 
 # Ignore Dockerfile and docker-compose
 Dockerfile

@@ -30,7 +30,7 @@ def add_comment(request, post_id):
     if request.method == "POST":
 
         if not request.user.is_authenticated:
-            messages.warning(request, 'Please login to add comments')
+            messages.warning(request, "Please login to add comments")
             return redirect("login")
 
         form = NewComment(request.POST)
@@ -65,8 +65,7 @@ def add_comment(request, post_id):
         return render(request, "posts/add_comment.html", context)
 
 
-@login_required(login_url="login")
-@api_view
+@api_view(["GET", "POST"])
 def update_votes(request, post_id):
 
     post = Post.objects.get(id=post_id)
