@@ -24,6 +24,4 @@ db.json
 README.md
 readme.docs/
 
-Dockerfile
-docker-compose.yml
-entrypoint.sh
+news_api.postman_collection.json

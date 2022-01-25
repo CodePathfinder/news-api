@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from django.contrib.messages import constants as messages
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,10 +27,10 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = int(os.environ.get('DEBUG', default=0))
-DEBUG = True
+DEBUG = False
 
 
-ALLOWED_HOSTS = ["post-news.herokuapp.com", "127.0.0.1", "0.0.0.0", "localhost"]
+ALLOWED_HOSTS = ["api-post-news.herokuapp.com", "127.0.0.1", "localhost"]
 
 # Application definition
 
@@ -48,6 +49,11 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -81,15 +87,18 @@ WSGI_APPLICATION = "news.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
-        "NAME": os.environ.get("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
-        "USER": os.environ.get("SQL_USER", "user"),
-        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': "os.environ.get('DB_NAME')",
+        'USER': "os.environ.get('DB_USERNAME')",
+        'PASSWORD': "os.environ.get('DB_PASSWORD')",
+        'HOST': "os.environ.get('DB_HOST')",
+        'PORT': "os.environ.get('DB_PORT')"
     }
 }
+# https://devcenter.heroku.com/articles/python-concurrency-and-database-connections
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)  
+REMOTE_FLAG = True
 
 AUTH_USER_MODEL = "posts.User"
 
@@ -121,6 +130,8 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
+USE_L10N = True
+
 USE_TZ = True
 
 
@@ -129,7 +140,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
