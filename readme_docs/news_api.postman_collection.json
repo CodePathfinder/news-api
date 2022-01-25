@@ -1,0 +1,253 @@
+{
+	"info": {
+		"_postman_id": "e2418b70-e4e0-441b-9640-424329df74fb",
+		"name": "news_api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_post_with _comments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/v1/postdetails/7",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"v1",
+						"postdetails",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_my_post",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"I got amused by my very modest cloud costs\",\n    \"link\": \"https://www.troyhunt.com/how-i-got-pwned-by-my-cloud-costs/\",\n    \"author\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/v1/postdetails/11",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"v1",
+						"postdetails",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_my_post",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{Username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"I got amused by my very modest cloud costs\",\n    \"link\": \"https://www.troyhunt.com/how-i-got-pwned-by-my-cloud-costs/\",\n    \"author\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/v1/postdetails/12",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"v1",
+						"postdetails",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_new_post",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password_c}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{User_c}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"I got pwned by my cloud costs\",\n    \"link\": \"https://www.troyhunt.com/how-i-got-pwned-by-my-cloud-costs/\",\n    \"author\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/v1/myposts",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"v1",
+						"myposts"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_my_posts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{Password_a}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{User_a}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"I got pwned by my cloud costs\",\n    \"link\": \"https://www.troyhunt.com/how-i-got-pwned-by-my-cloud-costs/\",\n    \"author\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/v1/myposts",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"v1",
+						"myposts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_all_posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/v1/newslist",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"v1",
+						"newslist"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
