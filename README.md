@@ -65,7 +65,7 @@ Rest API requests may be tested with Postman, on DRF generated pages or othervis
 
    12. Web application is ready for use in dev mode at '0:0:0:0:8000' or 'localhost:8000'.
 
-   13. To check the crontab settings run `python manage.py crontab show` in CLI. To stop or restart the job run 'python manage.py crontab remove' or 'python manage.py crontab add' respectively.
+   13. To check the crontab settings run `docker-compose exec web python manage.py crontab show` in CLI. If the job is not started run 'docker-compose exec web python manage.py crontab add'. To stop the job run 'docker-compose exec web python manage.py crontab remove'. 
 
    Notes:
  
