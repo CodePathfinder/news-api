@@ -12,7 +12,8 @@ function updateVotes(vote) {
       
   // GET request to update_votes API route
   let post_id = vote.slice(4);
-  url = `http://127.0.0.1:8000/update_votes/${post_id}`
+  const domain = 'https://api-post-news.herokuapp.com'
+  url = `${domain}/update_votes/${post_id}`
   let headers = new Headers();
   headers.append('Access-Control-Allow-Origin', '*');
   headers.append('Content-Type', 'application/json');
